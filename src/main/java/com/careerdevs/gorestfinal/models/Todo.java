@@ -1,18 +1,17 @@
 package com.careerdevs.gorestfinal.models;
 
-import org.hibernate.annotations.Type;
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
 
 @Entity
 
-public class Post {
-
-//    @Id
-//    @Column(name = "id")
-//    @Type(type = "uuid-char")
-//    private UUID uuid = UUID.randomUUID();
+//{
+//        id: 1552,
+//        user_id: 3194,
+//        title: "Fugit totus thymbra defaeco sunt aiunt.",
+//        due_on: "2022-05-13T00:00:00.000+05:30",
+//        status: "completed"
+//        },
+public class Todo {
 
 
     @Id
@@ -23,8 +22,9 @@ public class Post {
 
     private String title;
 
-    @Column(length = 512)  //update
-    private String body;
+    private String due_on;
+
+    private String status;
 
     public long getId() {
         return id;
@@ -38,17 +38,22 @@ public class Post {
         return title;
     }
 
-    public String getBody() {
-        return body;
+    public String getDue_on() {
+        return due_on;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "Todo{" +
                 "id=" + id +
                 ", user_id=" + user_id +
                 ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
+                ", due_on='" + due_on + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

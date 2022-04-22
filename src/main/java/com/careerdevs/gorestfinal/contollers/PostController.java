@@ -72,7 +72,9 @@ public class PostController {
             return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
 
         } catch (HttpClientErrorException e) {
-            return ApiErrorHandling.customApiError();
+            return ApiErrorHandling.customApiError(e.getMessage(), e.getStatusCode());
+        }catch (Exception e) {
+            return ApiErrorHandling.genericApiError(e);
         }
     }
 }

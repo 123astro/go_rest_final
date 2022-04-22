@@ -6,9 +6,9 @@ import com.careerdevs.gorestfinal.repositories.PostRepository;
 public class PostValidation {
 
     public static ValidationError validatePost (Post post, PostRepository postRepo, boolean isUpdating){
-        ValidationError error = new ValidationError();
-        // Validated data  for post
+        ValidationError errors = new ValidationError();
+        // Validated data for post
 
-        return
+        return errors;
     }
 }
