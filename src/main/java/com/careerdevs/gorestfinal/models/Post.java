@@ -1,8 +1,5 @@
 package com.careerdevs.gorestfinal.models;
 
-import org.hibernate.annotations.Type;
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
 
 @Entity
