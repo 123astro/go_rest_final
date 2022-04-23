@@ -174,13 +174,34 @@ public class UserController {
     public ResponseEntity<?> createNewUser(@RequestBody User newUser) {
         try {
 
-            ValidationError newUserErrors = UserValidation.validateNewUser(newUser, userRepository, true);
+            ValidationError newUserErrors = UserValidation.validateNewUser(newUser, userRepository, false);
 
             if (newUserErrors.hasError()) {
                 throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, newUserErrors.toString());
             } // no else block needed
 
             User savedUser = userRepository.save(newUser);
+
+            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+
+        } catch (HttpClientErrorException e) {
+            return ApiErrorHandling.customApiError(e.getMessage(), e.getStatusCode());
+        } catch (Exception e) {
+            return ApiErrorHandling.genericApiError(e);
+        }
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        try {
+
+            ValidationError newUserErrors = UserValidation.validateNewUser(user, userRepository, true);
+
+            if (newUserErrors.hasError()) {
+                throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, newUserErrors.toString());
+            } // no else block needed
+
+            User savedUser = userRepository.save(user);
 
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
 
